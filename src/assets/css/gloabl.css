@@ -1,0 +1,22 @@
+/* 全局样式 */
+html,
+body,
+#app {
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* min-width: 100%; */
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.el-input__inner {
+    height: 30px;
+    border-radius: 20px !important;
+    padding-left: 35px;
+}
