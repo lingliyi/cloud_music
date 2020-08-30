@@ -1,88 +1,90 @@
 <template>
   <div>
-    <!-- 轮播图 -->
-    <div class="banner">
-      <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="(item, index) in bannerlist" :key="index">
-          <img :src="item.imageUrl" alt />
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-    <!-- 热门歌单 -->
-    <div class="hotlist">
-      <div>
-        <h1>热门推荐</h1>
+    <div class="found">
+      <!-- 轮播图 -->
+      <div class="banner">
+        <el-carousel :interval="4000" type="card" height="200px">
+          <el-carousel-item v-for="(item, index) in bannerlist" :key="index">
+            <img :src="item.imageUrl" alt />
+          </el-carousel-item>
+        </el-carousel>
       </div>
-      <div class="list">
+      <!-- 热门歌单 -->
+      <div class="hotlist">
+        <div>
+          <h1>热门推荐</h1>
+        </div>
+        <div class="list">
+          <ul>
+            <li
+              v-for="item in hotlist.slice(0, 10)"
+              :key="item.id"
+              :class="item.className"
+              @click="getSongList(item.id)"
+            >
+              <div class="imgbox">
+                <img :src="item.picUrl" alt />
+              </div>
+              <p>{{ item.name }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 最新音乐 -->
+      <div class="newmusic">
+        <div>
+          <h1>最新音乐</h1>
+        </div>
+        <div class="newlist">
+          <ul>
+            <li v-for="item in newlist.slice(0, 5)" :key="item.id">
+              <div class="index">
+                <span>{{ item.index }}</span>
+              </div>
+              <div class="newlist-img">
+                <img :src="item.album.picUrl" alt />
+              </div>
+              <div class="newlist-title">
+                <div>{{ item.name }}</div>
+                <div>{{ item.artists[0].name }}</div>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li v-for="item in newlist.slice(5, 10)" :key="item.id">
+              <div class="index">
+                <span>{{ item.index }}</span>
+              </div>
+              <div class="newlist-img">
+                <img :src="item.album.picUrl" alt />
+              </div>
+              <div class="newlist-title">
+                <div>{{ item.name }}</div>
+                <div>{{ item.artists[0].name }}</div>
+                <!-- <p>{{ item.name }}</p>
+                <p>{{ item.artists[0].name }}</p>-->
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 推荐mv -->
+      <div class="mv">
+        <div>
+          <h1>推荐MV</h1>
+        </div>
         <ul>
-          <li
-            v-for="item in hotlist.slice(0, 10)"
-            :key="item.id"
-            :class="item.className"
-            @click="getSongList(item.id)"
-          >
-            <div class="imgbox">
+          <li v-for="item in mvlist.slice(0, 3)" :key="item.id" @click="mvDetail(item.id)">
+            <div class="img-wrap">
               <img :src="item.picUrl" alt />
             </div>
-            <p>{{ item.name }}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- 最新音乐 -->
-    <div class="newmusic">
-      <div>
-        <h1>最新音乐</h1>
-      </div>
-      <div class="newlist">
-        <ul>
-          <li v-for="item in newlist.slice(0, 5)" :key="item.id">
-            <div class="index">
-              <span>{{ item.index }}</span>
-            </div>
-            <div class="newlist-img">
-              <img :src="item.album.picUrl" alt />
-            </div>
-            <div class="newlist-title">
+            <div class="title-wrap">
               <div>{{ item.name }}</div>
-              <div>{{ item.artists[0].name }}</div>
-            </div>
-          </li>
-        </ul>
-        <ul>
-          <li v-for="item in newlist.slice(5, 10)" :key="item.id">
-            <div class="index">
-              <span>{{ item.index }}</span>
-            </div>
-            <div class="newlist-img">
-              <img :src="item.album.picUrl" alt />
-            </div>
-            <div class="newlist-title">
-              <div>{{ item.name }}</div>
-              <div>{{ item.artists[0].name }}</div>
-              <!-- <p>{{ item.name }}</p>
-              <p>{{ item.artists[0].name }}</p>-->
+              <div>{{ item.artistName }}</div>
             </div>
           </li>
         </ul>
       </div>
-    </div>
-    <!-- 推荐mv -->
-    <div class="mv">
-      <div>
-        <h1>推荐MV</h1>
-      </div>
-      <ul>
-        <li v-for="item in mvlist.slice(0, 3)" :key="item.id" @click="mvDetail(item.id)">
-          <div class="img-wrap">
-            <img :src="item.picUrl" alt />
-          </div>
-          <div class="title-wrap">
-            <div>{{ item.name }}</div>
-            <div>{{ item.artistName }}</div>
-          </div>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -112,6 +114,7 @@ export default {
     this.getMv();
   },
   methods: {
+    //轮播图
     async getBanner() {
       const { data: res } = await this.$http.get("/banner");
       this.bannerlist = res.banners;
@@ -140,7 +143,7 @@ export default {
     async getMv() {
       const { data: res } = await this.$http.get("/personalized/mv");
       this.mvlist = res.result;
-      console.log(res);
+      // console.log(res);
     },
     //mv详情
     mvDetail(id) {
@@ -152,10 +155,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.found {
+  width: 97%;
+  margin: 0 auto;
+}
 // 轮播图
 .banner {
-  // height: 500px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 
   img {
@@ -165,7 +171,7 @@ export default {
   }
 }
 .hotlist {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .list {
@@ -206,7 +212,7 @@ export default {
 }
 //最新音乐
 .newmusic {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .newlist {
@@ -270,7 +276,7 @@ export default {
 }
 //推荐mv
 .mv {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 30px;
   ul {

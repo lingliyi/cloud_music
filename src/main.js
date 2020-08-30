@@ -4,9 +4,22 @@ import router from "./router";
 
 import TopBar from "../src/components/module/TopBar.vue";
 import NavMenu from "../src/components/module/NavMenu.vue";
-import PlayMusic from "../src/components/PlayMusic.vue";
+import AudioPlayer from "../src/components/module/AudioPlayer.vue";
+import PlayMusic from "../src/components/module/PlayMusic.vue";
 
-//封装组件
+//导入过滤器方法
+import * as playCount from '../src/components/module/playCount.js'
+Object.keys(playCount).forEach(key => {
+  Vue.filter(key, playCount[key])
+})
+
+
+
+//bus总线
+import VueBus from "vue-bus";
+Vue.use(VueBus);
+
+//封装全局组件
 Vue.component("top-bar", TopBar);
 Vue.component("nav-menu", NavMenu);
 Vue.component("play-music", PlayMusic);
@@ -19,8 +32,9 @@ Vue.use(ElementUI);
 //全局css样式
 import "../src/assets/css/gloabl.css";
 
-//导入font-awesome
-import "./assets/font/css/font-awesome.min.css";
+//导入font图标
+
+import "../src/assets/fonts/iconfont.css";
 
 //asiox
 import axios from "axios";
@@ -51,7 +65,9 @@ new Vue({
 
 //连续点击多次路由报错解决方法
 import Router from "vue-router";
-import { Tree } from "element-ui";
+import {
+  Tree
+} from "element-ui";
 
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {

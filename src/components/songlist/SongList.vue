@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="song-list">
     <div class="header">
       <!-- 图片 -->
       <div class="img-warp">
@@ -15,13 +15,15 @@
           <img :src="profile.avatarUrl" alt />
           <p>{{ profile.nickname }}</p>
           <p>
-            {{ songlist.createTime | dataFormat }}
+            {{ this.songlist.createTime | dataFormat }}
             创建
           </p>
         </div>
         <!-- 按钮行 -->
         <div class="action-warp">
-          <el-button type="danger" icon="el-icon-video-play" size="small ">播放全部</el-button>
+          <el-button type="danger" icon="el-icon-video-play" size="small "
+            >播放全部</el-button
+          >
         </div>
         <!-- 简介 -->
         <div class="desc-warp">
@@ -33,20 +35,66 @@
     <div class="tabs-warp">
       <el-tabs v-model="activeName">
         <el-tab-pane label="歌曲列表" name="first">
-          <el-table :data="playlist" style="width: 100%" stripe @row-dblclick="playmusic($event)">
-            <el-table-column type="index"></el-table-column>
-            <el-table-column :show-overflow-tooltip="true" prop="name" label="歌曲标题" width="320"></el-table-column>
-            <el-table-column prop="ar[0].name" label="歌手"></el-table-column>
-            <el-table-column :show-overflow-tooltip="true" prop="al.name" label="专辑"></el-table-column>
-            <el-table-column prop="dt" label="时长" width="180"></el-table-column>
+          <el-table
+            :data="playlist"
+            stripe
+            :row-style="{ height: '10px' }"
+            style="width: 100%"
+            @row-dblclick="playmusic($event)"
+          >
+            <el-table-column prop="index" width="50"></el-table-column>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              prop="name"
+              label="歌曲标题"
+              width="350"
+              class-name="title"
+            ></el-table-column>
+            <el-table-column
+              prop="ar"
+              label="歌手"
+              :show-overflow-tooltip="true"
+            >
+              <template slot-scope="scope">
+                <!-- {{ scope.row.ar }} -->
+                <span
+                  v-for="(item, index) in scope.row.ar"
+                  :key="'user-' + index"
+                  >{{ item.name
+                  }}<span
+                    v-if="
+                      scope.row.ar.length > 1 && index + 1 < scope.row.ar.length
+                    "
+                  >
+                    /
+                  </span></span
+                >
+              </template>
+            </el-table-column>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              prop="al.name"
+              label="专辑"
+            ></el-table-column>
+            <el-table-column
+              prop="dt"
+              label="时长"
+              width="60"
+            ></el-table-column>
           </el-table>
         </el-tab-pane>
-        <el-tab-pane :label="'评论(' + (comments.total || 0) + ')'" name="second">
+        <el-tab-pane
+          :label="'评论(' + (comments.total || 0) + ')'"
+          name="second"
+        >
           <div class="comments">
             <h4>精彩评论</h4>
             <div class="fenge"></div>
             <ul>
-              <li v-for="item in comments.hotComments" :key="item.commentId">
+              <li
+                v-for="(item, index) in comments.hotComments"
+                :key="'hot-' + index"
+              >
                 <div class="conet">
                   <div class="comments-left">
                     <img :src="item.user.avatarUrl" alt />
@@ -61,9 +109,9 @@
                       <p>
                         <span v-if="item.reply !== undefined">
                           @{{
-                          item.reply === undefined
-                          ? ""
-                          : item.reply.user.nickname
+                            item.reply === undefined
+                              ? ""
+                              : item.reply.user.nickname
                           }}:
                         </span>
                         {{ item.reply === undefined ? "" : item.reply.content }}
@@ -71,7 +119,9 @@
                     </div>
                     <div class="buttom">
                       <p>{{ item.time | dataFormat }}</p>
-                      <span class="fa fa-thumbs-o-up">({{ item.likedCount }})</span>
+                      <span class="fa fa-thumbs-o-up"
+                        >({{ item.likedCount }})</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -83,7 +133,10 @@
             <h4>最新评论{{ comments.length }}</h4>
             <div class="fenge"></div>
             <ul>
-              <li v-for="item in comments.comments" :key="item.commentId">
+              <li
+                v-for="(item, index) in comments.comments"
+                :key="'pu-' + index"
+              >
                 <div class="conet">
                   <div class="comments-left">
                     <img :src="item.user.avatarUrl" alt />
@@ -98,9 +151,9 @@
                       <p>
                         <span v-if="item.reply !== undefined">
                           @{{
-                          item.reply === undefined
-                          ? ""
-                          : item.reply.user.nickname
+                            item.reply === undefined
+                              ? ""
+                              : item.reply.user.nickname
                           }}:
                         </span>
                         {{ item.reply === undefined ? "" : item.reply.content }}
@@ -108,7 +161,9 @@
                     </div>
                     <div class="buttom">
                       <p>{{ item.time | dataFormat }}</p>
-                      <span class="fa fa-thumbs-o-up">({{ item.likedCount }})</span>
+                      <span class="fa fa-thumbs-o-up"
+                        >({{ item.likedCount }})</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -126,6 +181,17 @@
 export default {
   data() {
     return {
+      //音乐url
+      audio: {
+        id: 1,
+        name: "", //歌名
+        time: "", //时间
+        artist: "", //歌手
+        album: "", //专辑
+        cover: "", //缩略图
+        url: "" //歌曲url
+      },
+
       //歌单数据
       songlist: {},
       //歌单创建者
@@ -145,7 +211,7 @@ export default {
       //创建者数据
       profile: {},
       //
-      activeName: "first",
+      activeName: "first"
     };
   },
   created() {
@@ -161,24 +227,38 @@ export default {
       this.tags = res.playlist.tags;
 
       // 把歌曲id添加进数组中
-      this.songlist.trackIds.forEach((el) => {
+      this.songlist.trackIds.forEach(el => {
         this.listid.push(el.id);
       });
       //   console.log(res);
-
+      //长度限制
+      this.listid = this.listid.slice(0, 500);
+      // console.log(this.listid);
       //获取歌单里所有歌曲的信息
       const { data: res1 } = await this.$http.get(
         "/song/detail?ids=" + this.listid.join(",")
       );
+      // console.log(res1);
       //歌曲时长 时间戳转化
-      res1.songs.forEach((el) => {
-        var dt = new Date(el.dt);
-        const mm = (dt.getMinutes() + "").padStart(2, "0");
-        const ss = (dt.getSeconds() + "").padStart(2, "0");
-        el.dt = mm + ":" + ss;
-      });
-      this.playlist = res1.songs;
-      //   console.log(this.playlist);
+      if (res1.songs) {
+        res1.songs.forEach(el => {
+          var dt = new Date(el.dt);
+          const mm = (dt.getMinutes() + "").padStart(2, "0");
+          const ss = (dt.getSeconds() + "").padStart(2, "0");
+          el.dt = mm + ":" + ss;
+        });
+        //索引值
+        for (var i = 0; i < res1.songs.length; i++) {
+          if (i < 9) {
+            res1.songs[i].index = "0" + (i + 1);
+          } else {
+            res1.songs[i].index = i + 1;
+          }
+        }
+        this.playlist = res1.songs;
+        // console.log("歌单");
+        // console.log(this.playlist);
+      }
 
       //获取歌单的创建者
       const { data: res2 } = await this.$http.get(
@@ -210,19 +290,23 @@ export default {
 
     //双击列播放音乐
     async playmusic(event) {
-      //获取音乐url
-      const { data: res } = await this.$http.get("/song/url?id=" + event.id);
-      //   把url存进全局
-      // localStorage.setItem("musicurl", JSON.stringify(res.data));
-      this.audio.url = res.data[0].url;
-      this.audio.name = event.name;
-      this.audio.artist = event.ar[0].name;
+      // // 查找结果下标位置
+      for (var i = 0; i < this.playlist.length; i++) {
+        if (this.playlist[i].id == event.id) {
+          this.playlist.index = i;
+        }
+      }
 
-      //播放音频
-      //   console.log(res);
+      console.log("-------------");
       console.log(event);
-    },
+      // this.playlist.index = event.index;
+
+      this.$bus.emit("playList", this.playlist);
+      // console.log("----");
+      // console.log(this.playlist);
+    }
   },
+  beforeMount() {}
 };
 </script>
 
@@ -230,6 +314,7 @@ export default {
 [v-cloak] {
   display: none;
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -239,6 +324,7 @@ ul {
   display: flex;
   width: 95%;
   margin: 0 auto;
+  margin-bottom: 50px;
 }
 .header .img-warp {
   width: 200px;
@@ -284,20 +370,13 @@ ul {
   font-size: 14px;
 }
 .tabs-warp {
-  width: 95%;
+  width: 100%;
   margin: 30px auto;
+  margin-bottom: 60px;
   //   font-weight: 400;
 }
 .el-table {
-  font-size: 13px;
-}
-.el-footer {
-  display: flexed;
-  position: absolute;
-  top: 80%;
-  width: 100%;
-  //   bottom: 40px;
-  // background-color: bisque;
+  font-size: 12px;
 }
 
 //评论

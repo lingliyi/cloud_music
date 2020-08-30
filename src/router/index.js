@@ -1,14 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import {
+//   parseFloat
+// } from "core-js/fn/number";
 
 const Home = () =>
   import( /* webpackChunkName:"Home" */ "../components/Home.vue");
 const Found = () =>
   import( /* webpackChunkName:"Home" */ "../components/found/Found.vue");
+const PlayList = () =>
+  import( /* webpackChunkName:"Home" */ "../components/playlist/PlayList.vue");
 const SongList = () =>
   import( /* webpackChunkName:"Home" */ "../components/songlist/SongList.vue");
 const PlayMv = () =>
   import( /* webpackChunkName:"Home" */ "../components/mv/PlayMv.vue");
+const TopList = () =>
+  import( /* webpackChunkName:"Home" */ "../components/toplist/TopList.vue");
+const Mvs = () =>
+  import( /* webpackChunkName:"Home" */ "../components/mv/Mvs.vue");
+const AllMv = () =>
+  import( /* webpackChunkName:"Home" */ "../components/mv/AllMv.vue");
+const Search = () =>
+  import( /* webpackChunkName:"Home" */ "../components/search/Search.vue");
+
+
 Vue.use(VueRouter);
 
 
@@ -23,12 +38,29 @@ const routes = [{
     component: Home,
     redirect: "/found",
     children: [{
-      path: "/found",
-      component: Found
-    }, {
-      path: "/playlist/:id",
-      component: SongList
-    }, ]
+        path: "/found",
+        component: Found
+      },
+      {
+        path: "/playlist",
+        component: PlayList
+      }, {
+        path: "/playlist/:id",
+        component: SongList
+      }, {
+        path: "/toplist",
+        component: TopList
+      }, {
+        path: "/mvs",
+        component: Mvs
+      }, {
+        path: '/allmv',
+        component: AllMv
+      }, {
+        path: '/search/:key',
+        component: Search
+      }
+    ]
   },
   {
     path: "/mv/:id",

@@ -1,0 +1,107 @@
+{
+  "id": "2022421",
+  "name": "music-icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6998060",
+      "name": "播放列表",
+      "font_class": "bofangliebiao",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "2685809",
+      "name": "随机",
+      "font_class": "suiji",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6620824",
+      "name": "循环",
+      "font_class": "xunhuan",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "10651773",
+      "name": "顺序",
+      "font_class": "shunxu",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "12591371",
+      "name": "声音 音量 线性",
+      "font_class": "shengyinyinliangxianxing",
+      "unicode": "e72b",
+      "unicode_decimal": 59179
+    },
+    {
+      "icon_id": "1916702",
+      "name": "扩大",
+      "font_class": "kuoda",
+      "unicode": "e6f5",
+      "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "14472225",
+      "name": "pause",
+      "font_class": "pause",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "14472231",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "14472242",
+      "name": "skip--back",
+      "font_class": "skip--back",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "14472253",
+      "name": "skip--forward",
+      "font_class": "skip--forward",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "4338083",
+      "name": "Music Acc",
+      "font_class": "MusicAcc",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "9727411",
+      "name": "video",
+      "font_class": "video",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "4099326",
+      "name": "music",
+      "font_class": "music",
+      "unicode": "ee57",
+      "unicode_decimal": 61015
+    },
+    {
+      "icon_id": "13706577",
+      "name": "GoogleMaterial ic queue music 48px",
+      "font_class": "GoogleMaterialicqueuemusicpx",
+      "unicode": "ec14",
+      "unicode_decimal": 60436
+    }
+  ]
+}

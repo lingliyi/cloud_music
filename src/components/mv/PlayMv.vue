@@ -15,7 +15,8 @@
             <div class="play-mv">
               <video :src="mvurl.url" width="670" height="378" controls="controls"></video>
             </div>
-            <div class="comments">
+            <div class="nothing" v-if="hotlength===0 && ordlength === 0 ">还没有评论，快来抢沙发叭~</div>
+            <div class="comments" v-if="hotlength !== 0 ">
               <h4>精彩评论</h4>
               <div class="fenge"></div>
               <ul>
@@ -54,7 +55,7 @@
                 </li>
               </ul>
             </div>
-            <div class="comments">
+            <div class="comments" v-if="ordlength !== 0 ">
               <h4>最新评论{{ mvcomments.length }}</h4>
               <div class="fenge"></div>
               <ul>
@@ -136,6 +137,9 @@ export default {
       mvcomments: [],
       //mv推荐
       mvsimi: [],
+      //mv评论长度
+      hotlength: 0,
+      ordlength: 0,
     };
   },
   created() {
@@ -176,7 +180,9 @@ export default {
           i
         ].beReplied[0];
       }
-      // console.log(this.mvcomments);
+      this.hotlength = res.hotComments.length;
+      this.ordlength = res.comments.length;
+      console.log(res);
     },
     //获取相似mv
     async getMvSiMi() {
@@ -193,6 +199,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.nothing {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
 .el-header {
   padding: 0;
   margin: 0;

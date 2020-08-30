@@ -6,7 +6,7 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
-    /* min-width: 100%; */
+
 }
 
 ul {
@@ -15,8 +15,115 @@ ul {
     padding: 0;
 }
 
-.el-input__inner {
+/* 分隔线 */
+.fenge {
+    padding-top: 5px;
+    border-bottom: rgb(225, 225, 226) solid 0.5px;
+    padding-bottom: 5px;
+}
+
+/* 搜索框 */
+.search .el-input__inner {
+    height: 25px;
+    /* border-radius: 20px !important; */
+    padding-left: 35px;
+}
+
+/* Tab栏 */
+.mvs .el-tabs__nav-scroll {
+    display: flex;
+    justify-content: center;
+}
+
+.play-list .el-tabs__nav-scroll {
+    display: flex;
+    justify-content: center;
+}
+
+.el-tabs__item:hover {
+    color: pink !important;
+}
+
+.el-tabs__item.is-active {
+    color: pink;
+}
+
+.el-tabs__active-bar {
+    background-color: pink;
+}
+
+.el-tabs__nav-wrap::after {
+    height: 1px;
+}
+
+/* 登录弹窗 */
+.nav .el-input__inner {
     height: 30px;
     border-radius: 20px !important;
-    padding-left: 35px;
+    /* padding-left: 35px; */
+}
+
+.nav .el-dialog__footer {
+    text-align: center !important;
+}
+
+.nav .el-dialog__footer .el-button {
+    width: 200px;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f6f6f6;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #747474;
+}
+
+::-webkit-scrollbar-corner {
+    background: #f6f6f6;
+}
+
+
+/* 歌单列表 */
+.el-table td,
+.el-table th {
+    padding: 6px 0;
+    border: none;
+}
+
+.el-table thead .el-table_1_column_2 {
+    color: #909399 !important;
+}
+
+/* 歌名 */
+.title {
+    color: black;
+}
+
+.el-table tbody tr:hover>td {
+    background-color: rgb(245, 245, 247) !important;
+}
+
+/* //进度条样式 */
+.el-slider__bar {
+    background-color: #425467;
+}
+
+/* 进度条按钮 */
+.el-slider__button {
+    width: 10px;
+    height: 10px;
+    border: none;
 }

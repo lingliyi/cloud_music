@@ -4,15 +4,17 @@
       <el-header>
         <top-bar></top-bar>
       </el-header>
-      <el-container>
-        <el-aside width="200px">
+      <el-container class="main">
+        <el-aside width="250px">
           <nav-menu></nav-menu>
         </el-aside>
         <el-main>
-          <router-view></router-view>
+          <router-view :key="$route.fullPath"></router-view>
         </el-main>
       </el-container>
-      <!-- <el-footer> <play-music></play-music> </el-footer> -->
+      <el-footer>
+        <play-music></play-music>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -20,22 +22,8 @@
 <script>
 export default {
   data() {
-    return {
-      //音乐url
-      // audio: {
-      //   name: "",
-      //   artist: "",
-      //   url: "",
-      //   cover: '', // prettier-ignore
-      //   lrc: ""
-      // }
-    };
-  },
-  created() {
-    // this.playmusic();
-  },
-
-  methods: {}
+    return {};
+  }
 };
 </script>
 
@@ -44,6 +32,7 @@ export default {
   height: 100%;
   // width: 100%;
 }
+
 .el-header {
   padding: 0;
   margin: 0;
@@ -59,18 +48,23 @@ export default {
   bottom: 0;
 }
 .el-main {
+  // padding: 0;
   position: absolute;
-  left: 200px;
+  left: 250px;
   right: 0;
   top: 40px;
   bottom: 0;
   overflow-y: scroll;
+  padding: 10px;
 }
 .el-footer {
-  display: flexed;
-  position: absolute;
+  // display: flexed;
+  // position: absolute;
   width: 100%;
-  bottom: 0;
-  background-color: bisque;
+  // bottom: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 999;
+  // background-color: bisque;
 }
 </style>
