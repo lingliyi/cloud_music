@@ -12,7 +12,7 @@
 
 1.如何触发音乐播放器，传数据给播放器组件。
 
-bus，本项目采用的就是bus，本项目采用的就是bus。使用$bus这样不论音乐播放器和要播放的音乐所在组件是何种关系，都可以监听到要播放的音乐
+bus，本项目采用的就是bus。使用$bus这样不论音乐播放器和要播放的音乐所在组件是何种关系，都可以监听到要播放的音乐
 
 2.如何手写一个audio组件
 
@@ -30,7 +30,7 @@ bus，本项目采用的就是bus，本项目采用的就是bus。使用$bus这�
 
 
 
-![1598867557679]<https://github.com/lingliyi/images/tree/master/cloud_music/1598867557679.png>
+![1598867557679](https://github.com/lingliyi/images/blob/master/cloud_music/1598866098261.png)
 
 
 
