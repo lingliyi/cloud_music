@@ -29,9 +29,7 @@
                 v-for="(item, index) in searchHotList"
                 :key="index"
                 @click="searchDetail(item.searchWord)"
-              >
-                {{ item.searchWord }}
-              </li>
+              >{{ item.searchWord }}</li>
             </ul>
           </div>
           <div class="tips" v-if="!searchShow">
@@ -41,9 +39,7 @@
                 v-for="(item, index) in searchSuggest"
                 :key="index"
                 @click="searchDetail(item.name + '-' + item.artists[0].name)"
-              >
-                {{ item.name }}-{{ item.artists[0].name }}
-              </li>
+              >{{ item.name }}-{{ item.artists[0].name }}</li>
             </ul>
           </div>
         </div>
@@ -63,7 +59,7 @@ export default {
       //搜索联想
       searchSuggest: {},
       //热搜显示
-      searchShow: true
+      searchShow: true,
     };
   },
   created() {},
@@ -81,7 +77,7 @@ export default {
     },
     //自定义输入搜索
     doSearch() {
-      this.$router.push("search/" + this.searchValue);
+      this.$router.push("/search/" + this.searchValue);
       this.searchDis = false;
       this.searchValue = "";
     },
@@ -109,7 +105,7 @@ export default {
       this.searchShow = false;
       this.searchSuggest = res.result.songs;
       console.log(res);
-    }
+    },
   },
   mounted() {
     //搜索下拉隐藏
@@ -118,11 +114,11 @@ export default {
       () => [
         ((this.searchDis = false),
         (this.searchValue = ""),
-        (this.searchShow = true))
+        (this.searchShow = true)),
       ],
       false
     );
-  }
+  },
 };
 </script>
 <style lang="less" scoped>

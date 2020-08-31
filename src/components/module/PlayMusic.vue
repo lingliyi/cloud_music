@@ -18,48 +18,37 @@
     <div class="audio-module">
       <!-- 缩略图 -->
       <div class="audio-img">
-        <img :src="song.al.picUrl" alt="" />
+        <img :src="song.al.picUrl" alt />
       </div>
       <div class="audio-title">
         <p>{{ song.name }}</p>
         <p>
-          <span v-for="(item, index) in song.ar" :key="'user-' + index"
-            >{{ item.name
-            }}<span v-if="song.ar.length > 1 && index + 1 < song.ar.length">
-              /
-            </span></span
-          >
+          <span v-for="(item, index) in song.ar" :key="'user-' + index">
+            {{ item.name
+            }}
+            <span
+              v-if="song.ar.length > 1 && index + 1 < song.ar.length"
+            >/</span>
+          </span>
         </p>
       </div>
       <div class="control">
         <!-- 上一首 -->
-        <span><i class="iconfont skip--back">&#xe60b;</i></span>
+        <span>
+          <i class="iconfont skip--back">&#xe60b;</i>
+        </span>
 
         <!-- 播放/暂停 -->
         <span v-if="audio.playing">
-          <i
-            class="iconfont pause"
-            @click="startPlayOrPause"
-            circle
-            type="danger"
-            >&#xe609;</i
-          ></span
-        >
+          <i class="iconfont pause" @click="startPlayOrPause" circle type="danger">&#xe609;</i>
+        </span>
         <span v-else>
-          <i
-            class="iconfont play"
-            @click="startPlayOrPause"
-            circle
-            type="danger"
-            >&#xe60a;</i
-          ></span
-        >
+          <i class="iconfont play" @click="startPlayOrPause" circle type="danger">&#xe60a;</i>
+        </span>
         <!-- 下一首 -->
         <span @click="onEd">
-          <i class="iconfont skip--forward" circle type="danger"
-            >&#xe60c;</i
-          ></span
-        >
+          <i class="iconfont skip--forward" circle type="danger">&#xe60c;</i>
+        </span>
       </div>
       <div class="mode">
         <p>{{ audio.currentTime | formatSecond }}</p>
@@ -74,134 +63,80 @@
 
         <!-- //音量 -->
         <i @click="onMuted" class="iconfont 声音 音量 线性">&#xe72b;</i>
-        <el-slider
-          v-model="sliderVoice"
-          @change="changeCurrentVoice"
-          class="voice"
-        ></el-slider>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          :content="tooltip"
-          placement="top"
-        >
-          <span v-if="order === 0" @click="onOrder"
-            ><i class="iconfont 顺序">&#xe72d;</i></span
-          >
-          <span v-else-if="order === 1" @click="onOrder"
-            ><i class="iconfont 随机">&#xe600;</i></span
-          >
-          <span v-else-if="order === 2" @click="onOrder"
-            ><i class="iconfont 循环">&#xe677;</i></span
-          >
+        <el-slider v-model="sliderVoice" @change="changeCurrentVoice" class="voice"></el-slider>
+        <el-tooltip class="item" effect="dark" :content="tooltip" placement="top">
+          <span v-if="order === 0" @click="onOrder">
+            <i class="iconfont 顺序">&#xe72d;</i>
+          </span>
+          <span v-else-if="order === 1" @click="onOrder">
+            <i class="iconfont 随机">&#xe600;</i>
+          </span>
+          <span v-else-if="order === 2" @click="onOrder">
+            <i class="iconfont 循环">&#xe677;</i>
+          </span>
         </el-tooltip>
-        <span @click="showPlayList"
-          ><i class="iconfont 播放列表">&#xe60d;</i></span
-        >
+        <span @click="showPlayList">
+          <i class="iconfont 播放列表">&#xe60d;</i>
+        </span>
       </div>
     </div>
     <div class="play-list" v-if="playListBox">
       <el-tabs v-model="activeName">
         <el-tab-pane label="播放列表" name="first">
           <div class="content">
-            <el-table
-              :data="songList"
-              stripe
-              :row-style="{ height: '10px' }"
-              style="width: 100%"
-            >
-              <el-table-column
-                :show-overflow-tooltip="true"
-                prop="name"
-                label="歌曲标题"
-                width=""
-              >
+            <el-table :data="songList" stripe :row-style="{ height: '10px' }" style="width: 100%">
+              <el-table-column :show-overflow-tooltip="true" prop="name" label="歌曲标题" width>
                 <template slot-scope="scope">
                   <span>
                     <span
                       :class="scope.row.index - 1 == index ? 'ontitle' : ''"
-                    >
-                      {{ scope.row.name }}
-                    </span>
+                    >{{ scope.row.name }}</span>
                   </span>
-                </template></el-table-column
-              >
-              <el-table-column
-                prop="ar"
-                label="歌手"
-                width="150"
-                :show-overflow-tooltip="true"
-              >
+                </template>
+              </el-table-column>
+              <el-table-column prop="ar" label="歌手" width="150" :show-overflow-tooltip="true">
                 <template slot-scope="scope">
                   <!-- {{ scope.row.ar }} -->
-                  <span
-                    v-for="(item, index) in scope.row.ar"
-                    :key="'user-' + index"
-                    >{{ item.name
-                    }}<span
+                  <span v-for="(item, index) in scope.row.ar" :key="'user-' + index">
+                    {{ item.name
+                    }}
+                    <span
                       v-if="
                         scope.row.ar.length > 1 &&
                           index + 1 < scope.row.ar.length
                       "
-                    >
-                      /
-                    </span></span
-                  >
+                    >/</span>
+                  </span>
                 </template>
               </el-table-column>
               <!-- <el-table-column
                 :show-overflow-tooltip="true"
                 prop="al.name"
                 label="专辑"
-              ></el-table-column> -->
-              <el-table-column
-                prop="dt"
-                label="时长"
-                width="60"
-              ></el-table-column>
+              ></el-table-column>-->
+              <el-table-column prop="dt" label="时长" width="60"></el-table-column>
             </el-table>
           </div>
         </el-tab-pane>
         <el-tab-pane label="历史记录" name="second">
           <div class="content">
-            <el-table
-              :data="history"
-              stripe
-              :row-style="{ height: '10px' }"
-              style="width: 100%"
-            >
-              <el-table-column
-                :show-overflow-tooltip="true"
-                prop="name"
-                label="歌曲标题"
-              ></el-table-column>
-              <el-table-column
-                prop="ar"
-                label="歌手"
-                width="150"
-                :show-overflow-tooltip="true"
-              >
+            <el-table :data="history" stripe :row-style="{ height: '10px' }" style="width: 100%">
+              <el-table-column :show-overflow-tooltip="true" prop="name" label="歌曲标题"></el-table-column>
+              <el-table-column prop="ar" label="歌手" width="150" :show-overflow-tooltip="true">
                 <template slot-scope="scope">
-                  <span
-                    v-for="(item, index) in scope.row.ar"
-                    :key="'user-' + index"
-                    >{{ item.name
-                    }}<span
+                  <span v-for="(item, index) in scope.row.ar" :key="'user-' + index">
+                    {{ item.name
+                    }}
+                    <span
                       v-if="
                         scope.row.ar.length > 1 &&
                           index + 1 < scope.row.ar.length
                       "
-                    >
-                      /
-                    </span></span
-                  >
+                    >/</span>
+                  </span>
                 </template>
               </el-table-column>
-              <el-table-column
-                prop="dt"
-                label="时长"
-                width="60"
-              ></el-table-column>
+              <el-table-column prop="dt" label="时长" width="60"></el-table-column>
             </el-table>
           </div>
         </el-tab-pane>
@@ -245,18 +180,18 @@ export default {
         volume: 1,
         maxVolume: 1,
         //是否静音
-        muted: false
+        muted: false,
       },
       //当前播放
       song: {
         ar: [
           {
-            name: ""
-          }
+            name: "",
+          },
         ],
         al: {
-          picUrl: ""
-        }
+          picUrl: "",
+        },
       },
       songList: [
         // {
@@ -294,7 +229,7 @@ export default {
       //播放列表是否显示
       playListBox: false,
       //历史记录
-      history: []
+      history: [],
     };
   },
   created() {
@@ -454,14 +389,15 @@ export default {
       this.sliderVoice = parseInt(
         (this.audio.volume / this.audio.maxVolume) * 100
       );
-    }
+    },
   },
   beforeMount() {
     let self = this;
 
     //新
-    this.$bus.on("playList", function(res) {
+    this.$bus.on("playList", function (res) {
       console.log("list---");
+      console.log(res);
       //先暂停
       self.pause();
       self.listCount = res.length;
@@ -470,11 +406,6 @@ export default {
       self.songList = res;
       self.setSong();
       self.getSongUrl(res.index);
-      //   //后播放
-      //   setTimeout(() => {
-      //     self.play();
-      //   }, 150);
-      //   self.audio.playing = true;
     });
     console.log(this);
   },
@@ -496,8 +427,8 @@ export default {
     // 将整数转化成时分秒
     formatSecond(second = 0) {
       return realFormatSecond(second);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -2,7 +2,9 @@
   <div>
     <div class="search">
       <p>
-        搜索<span>"{{ key }}"</span>，找到{{ total }}个结果
+        搜索
+        <span>"{{ key }}"</span>
+        ，找到{{ total }}个结果
       </p>
       <el-tabs v-model="activeName" @tab-click="tabChange($event)">
         <el-tab-pane label="单曲" name="first">
@@ -14,23 +16,10 @@
             @row-dblclick="playmusic($event)"
           >
             <el-table-column prop="index" width="50"></el-table-column>
-            <el-table-column
-              :show-overflow-tooltip="true"
-              prop="name"
-              label="歌曲标题"
-              width="380"
-            ></el-table-column>
+            <el-table-column :show-overflow-tooltip="true" prop="name" label="歌曲标题" width="380"></el-table-column>
             <el-table-column prop="ar[0].name" label="歌手"></el-table-column>
-            <el-table-column
-              :show-overflow-tooltip="true"
-              prop="al.name"
-              label="专辑"
-            ></el-table-column>
-            <el-table-column
-              prop="dt"
-              label="时长"
-              width="60"
-            ></el-table-column>
+            <el-table-column :show-overflow-tooltip="true" prop="al.name" label="专辑"></el-table-column>
+            <el-table-column prop="dt" label="时长" width="60"></el-table-column>
           </el-table>
         </el-tab-pane>
         <el-tab-pane label="歌单" name="second">
@@ -53,11 +42,7 @@
         <el-tab-pane label="MV" name="third">
           <div class="mv-card">
             <ul>
-              <li
-                v-for="item in searchMv.mvs"
-                :key="item.id"
-                @click="mvDetail(item.id)"
-              >
+              <li v-for="item in searchMv.mvs" :key="item.id" @click="mvDetail(item.id)">
                 <div class="img-wrap">
                   <img :src="item.cover" alt />
                 </div>
@@ -69,7 +54,7 @@
             </ul>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="定时任务补偿" name="fourth">定时任务</el-tab-pane>
+        <!-- <el-tab-pane label="定时任务补偿" name="fourth">定时任务</el-tab-pane> -->
       </el-tabs>
     </div>
   </div>
@@ -92,7 +77,7 @@ export default {
       searchMv: {},
 
       //搜索类型
-      type: 1
+      type: 1,
     };
   },
   created() {
@@ -108,7 +93,7 @@ export default {
         "/cloudsearch?type=1&limit=100&keywords=" + this.key
       );
       //时间戳转换
-      res.result.songs.forEach(el => {
+      res.result.songs.forEach((el) => {
         var dt = new Date(el.dt);
         const mm = (dt.getMinutes() + "").padStart(2, "0");
         const ss = (dt.getSeconds() + "").padStart(2, "0");
@@ -158,8 +143,18 @@ export default {
       } else if (event.name === "third") {
         this.total = this.searchMv.mvCount;
       }
-    }
-  }
+    },
+    //双击列播放音乐
+    async playmusic(event) {
+      // // 查找结果下标位置
+      for (var i = 0; i < this.searchSongs.songs.length; i++) {
+        if (this.searchSongs.songs[i].id == event.id) {
+          this.searchSongs.songs.index = i;
+        }
+      }
+      this.$bus.emit("playList", this.searchSongs.songs);
+    },
+  },
 };
 </script>
 

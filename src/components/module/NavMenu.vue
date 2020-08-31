@@ -16,19 +16,19 @@
       <el-menu :default-active="activePath || '1'" @select="active($event)">
         <el-menu-item index="1">
           <i class="iconfont music icon-music"></i>
-          <span slot="title" @click="harf">发现音乐</span>
+          <span slot="title" @click="harf" style="padding-left:3px">发现音乐</span>
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-tickets"></i>
+          <i class="iconfont 歌单" style="font-size:20px">&#xe68c;</i>
           <span slot="title" @click="playlist">推荐歌单</span>
         </el-menu-item>
         <el-menu-item index="3">
-          <i class="el-icon-upload"></i>
-          <span slot="title" @click="toplist">排行榜</span>
+          <i class="iconfont 排行榜" style="font-size:18px">&#xe61c;</i>
+          <span slot="title" @click="toplist" style="padding-left:5px">排行榜</span>
         </el-menu-item>
         <el-menu-item index="4">
-          <i class="el-icon-video-camera"></i>
-          <span slot="title" @click="voide">视频</span>
+          <i class="iconfont video">&#xe613;</i>
+          <span slot="title" @click="voide" style="padding-left:5px">视频</span>
         </el-menu-item>
         <div v-if="islogin">
           <span class="create">创建的歌单</span>
@@ -40,9 +40,11 @@
             <i
               class="iconfont GoogleMaterial ic queue music 48px icon-GoogleMaterialicqueuemusicpx"
             ></i>
-            <span slot="title" @click="getSongList(item.id)">{{
+            <span slot="title" @click="getSongList(item.id)">
+              {{
               item.name
-            }}</span>
+              }}
+            </span>
           </el-menu-item>
           <span class="create">收藏的歌单</span>
           <el-menu-item
@@ -53,9 +55,11 @@
             <i
               class="iconfont GoogleMaterial ic queue music 48px icon-GoogleMaterialicqueuemusicpx"
             ></i>
-            <span slot="title" @click="getSongList(item.id)">{{
+            <span slot="title" @click="getSongList(item.id)">
+              {{
               item.name
-            }}</span>
+              }}
+            </span>
           </el-menu-item>
         </div>
       </el-menu>
@@ -89,7 +93,7 @@ export default {
       likeList: [],
 
       //登录状态
-      islogin: false
+      islogin: false,
     };
   },
   created() {
@@ -105,7 +109,7 @@ export default {
     async login() {
       const res = await this.$http
         .get("/user/detail?uid=" + this.uid)
-        .catch(err => {
+        .catch((err) => {
           return;
         });
       if (res) {
@@ -117,7 +121,7 @@ export default {
         const h = this.$createElement;
         this.$notify.error({
           title: "错误",
-          message: "uid错误"
+          message: "uid错误",
         });
       }
       window.sessionStorage.setItem("uid", this.uid);
@@ -137,7 +141,7 @@ export default {
       const { data: res } = await this.$http.get(
         "/user/playlist?uid=" + this.uid
       );
-      res.playlist.forEach(el => {
+      res.playlist.forEach((el) => {
         if (el.userId == this.uid) {
           this.createList.push(el);
         } else {
@@ -166,11 +170,15 @@ export default {
     },
     voide() {
       this.$router.push("/mvs");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
+.iconfont {
+  // font-size: 18px;
+  padding: 0px 5px;
+}
 .nav .el-menu {
   background-color: #ededed;
   margin-bottom: 40px;

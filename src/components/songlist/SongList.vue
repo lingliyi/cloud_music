@@ -21,9 +21,7 @@
         </div>
         <!-- 按钮行 -->
         <div class="action-warp">
-          <el-button type="danger" icon="el-icon-video-play" size="small "
-            >播放全部</el-button
-          >
+          <el-button type="danger" icon="el-icon-video-play" size="small ">播放全部</el-button>
         </div>
         <!-- 简介 -->
         <div class="desc-warp">
@@ -50,51 +48,30 @@
               width="350"
               class-name="title"
             ></el-table-column>
-            <el-table-column
-              prop="ar"
-              label="歌手"
-              :show-overflow-tooltip="true"
-            >
+            <el-table-column prop="ar" label="歌手" :show-overflow-tooltip="true">
               <template slot-scope="scope">
                 <!-- {{ scope.row.ar }} -->
-                <span
-                  v-for="(item, index) in scope.row.ar"
-                  :key="'user-' + index"
-                  >{{ item.name
-                  }}<span
+                <span v-for="(item, index) in scope.row.ar" :key="'user-' + index">
+                  {{ item.name
+                  }}
+                  <span
                     v-if="
                       scope.row.ar.length > 1 && index + 1 < scope.row.ar.length
                     "
-                  >
-                    /
-                  </span></span
-                >
+                  >/</span>
+                </span>
               </template>
             </el-table-column>
-            <el-table-column
-              :show-overflow-tooltip="true"
-              prop="al.name"
-              label="专辑"
-            ></el-table-column>
-            <el-table-column
-              prop="dt"
-              label="时长"
-              width="60"
-            ></el-table-column>
+            <el-table-column :show-overflow-tooltip="true" prop="al.name" label="专辑"></el-table-column>
+            <el-table-column prop="dt" label="时长" width="60"></el-table-column>
           </el-table>
         </el-tab-pane>
-        <el-tab-pane
-          :label="'评论(' + (comments.total || 0) + ')'"
-          name="second"
-        >
+        <el-tab-pane :label="'评论(' + (comments.total || 0) + ')'" name="second">
           <div class="comments">
             <h4>精彩评论</h4>
             <div class="fenge"></div>
             <ul>
-              <li
-                v-for="(item, index) in comments.hotComments"
-                :key="'hot-' + index"
-              >
+              <li v-for="(item, index) in comments.hotComments" :key="'hot-' + index">
                 <div class="conet">
                   <div class="comments-left">
                     <img :src="item.user.avatarUrl" alt />
@@ -109,9 +86,9 @@
                       <p>
                         <span v-if="item.reply !== undefined">
                           @{{
-                            item.reply === undefined
-                              ? ""
-                              : item.reply.user.nickname
+                          item.reply === undefined
+                          ? ""
+                          : item.reply.user.nickname
                           }}:
                         </span>
                         {{ item.reply === undefined ? "" : item.reply.content }}
@@ -119,9 +96,7 @@
                     </div>
                     <div class="buttom">
                       <p>{{ item.time | dataFormat }}</p>
-                      <span class="fa fa-thumbs-o-up"
-                        >({{ item.likedCount }})</span
-                      >
+                      <span class="iconfont 赞">&#xe65e;({{ item.likedCount }})</span>
                     </div>
                   </div>
                 </div>
@@ -133,10 +108,7 @@
             <h4>最新评论{{ comments.length }}</h4>
             <div class="fenge"></div>
             <ul>
-              <li
-                v-for="(item, index) in comments.comments"
-                :key="'pu-' + index"
-              >
+              <li v-for="(item, index) in comments.comments" :key="'pu-' + index">
                 <div class="conet">
                   <div class="comments-left">
                     <img :src="item.user.avatarUrl" alt />
@@ -151,9 +123,9 @@
                       <p>
                         <span v-if="item.reply !== undefined">
                           @{{
-                            item.reply === undefined
-                              ? ""
-                              : item.reply.user.nickname
+                          item.reply === undefined
+                          ? ""
+                          : item.reply.user.nickname
                           }}:
                         </span>
                         {{ item.reply === undefined ? "" : item.reply.content }}
@@ -161,9 +133,7 @@
                     </div>
                     <div class="buttom">
                       <p>{{ item.time | dataFormat }}</p>
-                      <span class="fa fa-thumbs-o-up"
-                        >({{ item.likedCount }})</span
-                      >
+                      <span class="iconfont 赞">&#xe65e;({{ item.likedCount }})</span>
                     </div>
                   </div>
                 </div>
@@ -189,7 +159,7 @@ export default {
         artist: "", //歌手
         album: "", //专辑
         cover: "", //缩略图
-        url: "" //歌曲url
+        url: "", //歌曲url
       },
 
       //歌单数据
@@ -211,7 +181,7 @@ export default {
       //创建者数据
       profile: {},
       //
-      activeName: "first"
+      activeName: "first",
     };
   },
   created() {
@@ -227,7 +197,7 @@ export default {
       this.tags = res.playlist.tags;
 
       // 把歌曲id添加进数组中
-      this.songlist.trackIds.forEach(el => {
+      this.songlist.trackIds.forEach((el) => {
         this.listid.push(el.id);
       });
       //   console.log(res);
@@ -241,7 +211,7 @@ export default {
       // console.log(res1);
       //歌曲时长 时间戳转化
       if (res1.songs) {
-        res1.songs.forEach(el => {
+        res1.songs.forEach((el) => {
           var dt = new Date(el.dt);
           const mm = (dt.getMinutes() + "").padStart(2, "0");
           const ss = (dt.getSeconds() + "").padStart(2, "0");
@@ -304,9 +274,9 @@ export default {
       this.$bus.emit("playList", this.playlist);
       // console.log("----");
       // console.log(this.playlist);
-    }
+    },
   },
-  beforeMount() {}
+  beforeMount() {},
 };
 </script>
 

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2543065",
+      "name": "歌单",
+      "font_class": "flyme_icon-",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "6926951",
+      "name": "赞",
+      "font_class": "zan",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "1134461",
+      "name": "排行榜",
+      "font_class": "paixingbang",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
       "icon_id": "6998060",
       "name": "播放列表",
       "font_class": "bofangliebiao",
