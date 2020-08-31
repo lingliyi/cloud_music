@@ -20,7 +20,7 @@ bus，本项目采用的就是bus，本项目采用的就是bus。使用$bus这�
 
 3.路由传参跳转界面没有刷新
 
-解决办法：
+解决办法：<https://github.com/lingliyi/images/tree/master/cloud_music>
 
 `<router-view :key="$route.fullPath"></router-view>`
 
@@ -30,25 +30,25 @@ bus，本项目采用的就是bus，本项目采用的就是bus。使用$bus这�
 
 
 
-![1598867557679](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867557679.png)
+![1598867557679](https://github.com/lingliyi/images/tree/master/cloud_music\1598867557679.png)
 
 
 
-![1598867577933](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867577933.png)
+![1598867577933](https://github.com/lingliyi/images/tree/master/cloud_music\1598867577933.png)
 
 
 
-![1598867607989](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867607989.png)
+![1598867607989](https://github.com/lingliyi/images/tree/master/cloud_music\1598867607989.png)
 
-![1598867642292](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867642292.png)
-
-
-
-![1598867677840](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867677840.png)
+![1598867642292](https://github.com/lingliyi/images/tree/master/cloud_music\1598867642292.png)
 
 
 
-![1598867878044](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598867878044.png)
+![1598867677840](https://github.com/lingliyi/images/tree/master/cloud_music\1598867677840.png)
 
-![1598872923053](C:\Users\70473\AppData\Roaming\Typora\typora-user-images\1598872923053.png)
+
+
+![1598867878044](https://github.com/lingliyi/images/tree/master/cloud_music\1598867878044.png)
+
+![1598872923053](https://github.com/lingliyi/images/tree/master/cloud_music\1598872923053.png)
 
