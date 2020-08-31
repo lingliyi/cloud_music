@@ -28,9 +28,7 @@ bus，本项目采用的就是bus。使用$bus这样不论音乐播放器和要�
 
 ##### 3.效果图
 
-<https://github.com/lingliyi/images/blob/master/cloud_music/>
 
-![1598867557679](https://github.com/lingliyi/images/blob/master/cloud_music/1598866098261.png)
 
 
 
