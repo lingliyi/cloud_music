@@ -26,16 +26,14 @@ bus，本项目采用的就是 bus。使用\$bus 这样不论音乐播放器和�
 
 ##### 3.效果图
 
-<img src="https://gitee.com/lingliyi/images/blob/master/cloud-music/1598867577933.png">
+![[1598867577933](https://github.com/lingliyi/images/blob/master/cloud_images/1598867577933.png)
 
-![[https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867577933.png](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867577933.png)
+![1598867607989](https://github.com/lingliyi/images/blob/master/cloud_images/1598867607989.png)
 
-![1598867607989](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867607989.png)
+![1598867642292](https://github.com/lingliyi/images/blob/master/cloud_images/1598867642292.png)
 
-![1598867642292](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867642292.png)
+![1598867677840](https://github.com/lingliyi/images/blob/master/cloud_images/1598867677840.png)
 
-![1598867677840](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867677840.png)
+![1598867878044](https://github.com/lingliyi/images/blob/master/cloud_images/1598867878044.png)
 
-![1598867878044](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867878044.png)
-
-![1598872923053](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598872923053.png)
+![1598872923053](https://github.com/lingliyi/images/blob/master/cloud_images/1598872923053.png)
