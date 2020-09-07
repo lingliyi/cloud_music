@@ -26,7 +26,7 @@ bus，本项目采用的就是 bus。使用\$bus 这样不论音乐播放器和�
 
 ##### 3.效果图
 
-![[1598867577933](https://github.com/lingliyi/images/blob/master/cloud_images/1598867577933.png)
+![1598867577933](https://github.com/lingliyi/images/blob/master/cloud_images/1598867577933.png)
 
 ![1598867607989](https://github.com/lingliyi/images/blob/master/cloud_images/1598867607989.png)
 
