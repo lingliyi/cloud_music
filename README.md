@@ -32,21 +32,21 @@ bus，本项目采用的就是bus。使用$bus这样不论音乐播放器和要�
 
 
 
-![1598867577933](https://github.com/lingliyi/images/blob/master/cloud_music//1598867577933.png)
+![1598867577933](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867577933.png)
 
 
 
-![1598867607989](https://github.com/lingliyi/images/blob/master/cloud_music//1598867607989.png)
+![1598867607989](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867607989.png)
 
-![1598867642292](https://github.com/lingliyi/images/blob/master/cloud_music//1598867642292.png)
-
-
-
-![1598867677840](https://github.com/lingliyi/images/blob/master/cloud_music//1598867677840.png)
+![1598867642292](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867642292.png)
 
 
 
-![1598867878044](https://github.com/lingliyi/images/blob/master/cloud_music//1598867878044.png)
+![1598867677840](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867677840.png)
 
-![1598872923053](https://github.com/lingliyi/images/blob/master/cloud_music//1598872923053.png)
+
+
+![1598867878044](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598867878044.png)
+
+![1598872923053](https://gitee.com/lingliyi/images/tree/master/cloud-music/1598872923053.png)
 
