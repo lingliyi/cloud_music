@@ -8,14 +8,15 @@
           <ul>
             <li v-for="item in toplist.slice(0, 4)" :key="item.id">
               <div class="toplist-img">
-                <span>飙升榜</span>
+                <span>{{item.name}}</span>
               </div>
               <ul>
                 <li v-for="(item2, index) in item.miniPlaylist" :key="item2.id">
                   <p>{{ index + 1 }}</p>
                   <p>
                     {{ item2.name
-                    }}<span v-if="item2.alia[0]"> ({{ item2.alia[0] }}) </span>
+                    }}
+                    <span v-if="item2.alia[0]">({{ item2.alia[0] }})</span>
                   </p>
 
                   <p>{{ item2.ar[0].name }}</p>
@@ -30,18 +31,14 @@
         <h1>全球榜</h1>
         <div class="fenge"></div>
         <ul>
-          <li
-            v-for="item in toplist.slice(4)"
-            :key="item.id"
-            @click="musicList(item.id)"
-          >
+          <li v-for="item in toplist.slice(4)" :key="item.id" @click="musicList(item.id)">
             <div class="small-img">
               <img :src="item.coverImgUrl" alt />
 
-              <span
-                ><i class="iconfont Music Acc">&#xe73a;</i>
-                {{ item.playCount | playCount }}万</span
-              >
+              <span>
+                <i class="iconfont Music Acc">&#xe73a;</i>
+                {{ item.playCount | playCount }}万
+              </span>
             </div>
             <p>{{ item.name }}</p>
           </li>
@@ -55,7 +52,7 @@ export default {
   data() {
     return {
       //排行榜数据
-      toplist: []
+      toplist: [],
     };
   },
   created() {
@@ -78,8 +75,8 @@ export default {
     }, //歌单详情跳转
     musicList(id) {
       this.$router.push("/playlist/" + id);
-    }
-  }
+    },
+  },
 };
 </script>
 

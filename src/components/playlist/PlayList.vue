@@ -4,11 +4,7 @@
       <div class="tabs">
         <ul>
           热门标签:
-          <li
-            v-for="(item, index) in playlisttag.tags"
-            :key="item.id"
-            @click="tagsChange(item)"
-          >
+          <li v-for="(item, index) in playlisttag.tags" :key="item.id" @click="tagsChange(item)">
             {{ item.name }}
             <span v-if="index !== playlisttag.tags.length - 1">|</span>
           </li>
@@ -54,8 +50,8 @@ export default {
         //页数
         pagenum: 0,
         //数据条数
-        total: 0
-      }
+        total: 0,
+      },
     };
   },
   created() {
@@ -96,8 +92,8 @@ export default {
     //获取单个歌单
     async getSongList(id) {
       this.$router.push("/playlist/" + id);
-    }
-  }
+    },
+  },
 };
 </script>
 

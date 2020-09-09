@@ -4,13 +4,15 @@
       <el-header>
         <top-bar></top-bar>
       </el-header>
-      <el-container class="main">
+      <el-container>
         <el-aside width="250px">
           <nav-menu></nav-menu>
         </el-aside>
-        <el-main>
-          <router-view :key="$route.fullPath"></router-view>
-        </el-main>
+        <el-container>
+          <el-main>
+            <router-view :key="$route.fullPath"></router-view>
+          </el-main>
+        </el-container>
       </el-container>
       <el-footer>
         <play-music></play-music>
@@ -23,7 +25,7 @@
 export default {
   data() {
     return {};
-  }
+  },
 };
 </script>
 
@@ -45,7 +47,7 @@ export default {
   position: absolute;
   left: 0;
   top: 40px;
-  bottom: 0;
+  bottom: 55px;
 }
 .el-main {
   // padding: 0;
@@ -53,18 +55,18 @@ export default {
   left: 250px;
   right: 0;
   top: 40px;
-  bottom: 0;
+  bottom: 50px;
   overflow-y: scroll;
   padding: 10px;
 }
 .el-footer {
   // display: flexed;
   // position: absolute;
+  // background-color: bisque;
+
   width: 100%;
-  // bottom: 0;
   padding: 0;
   margin: 0;
   z-index: 999;
-  // background-color: bisque;
 }
 </style>

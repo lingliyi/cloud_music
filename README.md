@@ -1,4 +1,4 @@
-### 高仿网易云音乐
+# 高仿网易云音乐
 
 ##### 1.**项目简介**
 
@@ -7,6 +7,12 @@
 本项目前端均是本人独立自主开发，所用技术栈：Vue 全家桶+Element-UI+axios。
 
 后端 API 官方文档：[<https://binaryify.github.io/NeteaseCloudMusicApi/#/>](http:)
+
+
+
+### [项目预览](http://www.lingliyi.icu/#/found)
+
+
 
 ##### 2.遇到的问题：
 

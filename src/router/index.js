@@ -9,19 +9,19 @@ const Home = () =>
 const Found = () =>
   import( /* webpackChunkName:"Home" */ "../components/found/Found.vue");
 const PlayList = () =>
-  import( /* webpackChunkName:"Home" */ "../components/playlist/PlayList.vue");
+  import( /* webpackChunkName:"Playlist" */ "../components/playlist/PlayList.vue");
 const SongList = () =>
-  import( /* webpackChunkName:"Home" */ "../components/songlist/SongList.vue");
+  import( /* webpackChunkName:"Playlist" */ "../components/songlist/SongList.vue");
 const PlayMv = () =>
-  import( /* webpackChunkName:"Home" */ "../components/mv/PlayMv.vue");
+  import( /* webpackChunkName:"Mv" */ "../components/mv/PlayMv.vue");
 const TopList = () =>
-  import( /* webpackChunkName:"Home" */ "../components/toplist/TopList.vue");
+  import( /* webpackChunkName:"Playlist" */ "../components/toplist/TopList.vue");
 const Mvs = () =>
-  import( /* webpackChunkName:"Home" */ "../components/mv/Mvs.vue");
+  import( /* webpackChunkName:"Mv" */ "../components/mv/Mvs.vue");
 const AllMv = () =>
-  import( /* webpackChunkName:"Home" */ "../components/mv/AllMv.vue");
+  import( /* webpackChunkName:"Mv" */ "../components/mv/AllMv.vue");
 const Search = () =>
-  import( /* webpackChunkName:"Home" */ "../components/search/Search.vue");
+  import( /* webpackChunkName:"Search" */ "../components/search/Search.vue");
 
 
 Vue.use(VueRouter);
@@ -69,7 +69,10 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  // mode: 'history',
+  // base: './', //加上这一行
+
 });
 
 export default router;

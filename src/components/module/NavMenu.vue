@@ -16,7 +16,9 @@
       <el-menu :default-active="activePath || '1'" @select="active($event)">
         <el-menu-item index="1">
           <i class="iconfont music icon-music"></i>
-          <span slot="title" @click="harf" style="padding-left:3px">发现音乐</span>
+          <span slot="title" @click="harf" style="padding-left:3px"
+            >发现音乐</span
+          >
         </el-menu-item>
         <el-menu-item index="2">
           <i class="iconfont 歌单" style="font-size:20px">&#xe68c;</i>
@@ -24,7 +26,9 @@
         </el-menu-item>
         <el-menu-item index="3">
           <i class="iconfont 排行榜" style="font-size:18px">&#xe61c;</i>
-          <span slot="title" @click="toplist" style="padding-left:5px">排行榜</span>
+          <span slot="title" @click="toplist" style="padding-left:5px"
+            >排行榜</span
+          >
         </el-menu-item>
         <el-menu-item index="4">
           <i class="iconfont video">&#xe613;</i>
@@ -41,9 +45,7 @@
               class="iconfont GoogleMaterial ic queue music 48px icon-GoogleMaterialicqueuemusicpx"
             ></i>
             <span slot="title" @click="getSongList(item.id)">
-              {{
-              item.name
-              }}
+              {{ item.name }}
             </span>
           </el-menu-item>
           <span class="create">收藏的歌单</span>
@@ -56,18 +58,23 @@
               class="iconfont GoogleMaterial ic queue music 48px icon-GoogleMaterialicqueuemusicpx"
             ></i>
             <span slot="title" @click="getSongList(item.id)">
-              {{
-              item.name
-              }}
+              {{ item.name }}
             </span>
           </el-menu-item>
         </div>
       </el-menu>
       <!-- 登录弹窗 -->
       <el-dialog title="登录" :visible.sync="loginDialogVisible" width="30%">
-        <el-input v-model="uid" placeholder="请输入内容"></el-input>
+        <el-input v-model="uid" placeholder="请输入网易云uid"></el-input>
+        <p>
+          1、请 点我
+          <a href="http://music.163.com">打开网易云音乐官网</a>
+        </p>
+        <p>2、点击页面右上角的“登录”</p>
+        <p>3、点击您的头像，进入我的主页</p>
+        <p>4、复制浏览器地址栏 /user/home?id= 后面的数字（网易云 UID）</p>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="danger" @click="login">登录</el-button>
         </span>
       </el-dialog>
     </div>
@@ -93,7 +100,7 @@ export default {
       likeList: [],
 
       //登录状态
-      islogin: false,
+      islogin: false
     };
   },
   created() {
@@ -109,7 +116,7 @@ export default {
     async login() {
       const res = await this.$http
         .get("/user/detail?uid=" + this.uid)
-        .catch((err) => {
+        .catch(err => {
           return;
         });
       if (res) {
@@ -117,13 +124,14 @@ export default {
         this.userDetail = res.data;
         this.getUserSongList();
         this.loginDialogVisible = false;
-      } else {
-        const h = this.$createElement;
-        this.$notify.error({
-          title: "错误",
-          message: "uid错误",
-        });
       }
+      //  else {
+      //   const h = this.$createElement;
+      //   this.$notify.error({
+      //     title: "错误",
+      //     message: "uid错误",
+      //   });
+      // }
       window.sessionStorage.setItem("uid", this.uid);
     },
     //退出
@@ -141,7 +149,7 @@ export default {
       const { data: res } = await this.$http.get(
         "/user/playlist?uid=" + this.uid
       );
-      res.playlist.forEach((el) => {
+      res.playlist.forEach(el => {
         if (el.userId == this.uid) {
           this.createList.push(el);
         } else {
@@ -170,8 +178,8 @@ export default {
     },
     voide() {
       this.$router.push("/mvs");
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -181,7 +189,7 @@ export default {
 }
 .nav .el-menu {
   background-color: #ededed;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
   .el-menu-item {
     padding-right: 0;
     height: 42px;

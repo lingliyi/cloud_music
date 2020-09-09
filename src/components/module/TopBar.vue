@@ -154,7 +154,7 @@ export default {
     font-size: 25px;
     > i {
       font-style: 15px;
-      padding: 0px;
+      padding: 0px 10px;
     }
   }
   > .search {

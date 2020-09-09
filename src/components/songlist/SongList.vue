@@ -8,14 +8,14 @@
       <div class="content">
         <!-- 标题 -->
         <div class="title-warp">
-          <p>{{ songlist.name }}</p>
+          <p>{{ songlist.name || "" }}</p>
         </div>
         <!-- 创建人 时间 -->
         <div class="creator-warp">
           <img :src="profile.avatarUrl" alt />
-          <p>{{ profile.nickname }}</p>
+          <p>{{ profile.nickname || "" }}</p>
           <p>
-            {{ this.songlist.createTime | dataFormat }}
+            {{ this.songlist.createTime | creatTime }}
             创建
           </p>
         </div>
@@ -25,8 +25,8 @@
         </div>
         <!-- 简介 -->
         <div class="desc-warp">
-          <p>标签: {{ tags.join("/") }}</p>
-          <p>简介: {{ songlist.description }}</p>
+          <p>标签: {{ tags.join("/") || "" }}</p>
+          <p class="deta">简介: {{ songlist.description || "" }}</p>
         </div>
       </div>
     </div>
@@ -52,8 +52,7 @@
               <template slot-scope="scope">
                 <!-- {{ scope.row.ar }} -->
                 <span v-for="(item, index) in scope.row.ar" :key="'user-' + index">
-                  {{ item.name
-                  }}
+                  {{ item.name }}
                   <span
                     v-if="
                       scope.row.ar.length > 1 && index + 1 < scope.row.ar.length
@@ -276,7 +275,17 @@ export default {
       // console.log(this.playlist);
     },
   },
-  beforeMount() {},
+  filters: {
+    creatTime: function (value) {
+      const dt = new Date(value);
+
+      const y = dt.getFullYear();
+      const m = (dt.getMonth() + 1 + "").padStart(2, "0");
+      const d = (dt.getDate() + "").padStart(2, "0");
+
+      return `${y}-${m}-${d}`;
+    },
+  },
 };
 </script>
 
@@ -307,6 +316,12 @@ ul {
 }
 .header .content {
   margin-left: 20px;
+  .date {
+    height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .header .content .title-warp p {
@@ -342,7 +357,7 @@ ul {
 .tabs-warp {
   width: 100%;
   margin: 30px auto;
-  margin-bottom: 60px;
+  // margin-bottom: 60px;
   //   font-weight: 400;
 }
 .el-table {
